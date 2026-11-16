@@ -1,0 +1,22 @@
+# Secrets - never upload these
+.env
+*.env
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# ChromaDB data (created when you run the app)
+chroma_data/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

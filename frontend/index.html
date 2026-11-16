@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocMind AI - Chat with your documents</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="logo">D</div>
+        <div>
+          <h1>DocMind AI</h1>
+          <p>Chat with your documents</p>
+        </div>
+      </div>
+
+      <!-- Backend selector: choose which server the frontend talks to -->
+      <section class="block">
+        <div class="block-title">Backend</div>
+        <div class="segmented" id="backendSwitch">
+          <button type="button" data-backend="python">Python</button>
+          <button type="button" data-backend="javascript" class="active">JavaScript</button>
+        </div>
+        <div class="status">
+          <span class="dot" id="statusDot"></span>
+          <span id="statusText">Checking...</span>
+        </div>
+      </section>
+
+      <!-- PDF upload area (click or drag and drop) -->
+      <section class="block">
+        <div class="block-title">Upload a PDF</div>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button">
+          <div class="dropzone-icon">+</div>
+          <div class="dropzone-text">Drop a PDF here or click to browse</div>
+          <div class="dropzone-hint">Max 10 MB</div>
+        </div>
+        <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+        <div class="upload-message" id="uploadMessage" hidden></div>
+      </section>
+
+      <!-- List of uploaded documents -->
+      <section class="block block-grow">
+        <div class="block-title">Documents</div>
+        <ul class="document-list" id="documentList"></ul>
+        <p class="empty-note" id="documentsEmpty">No documents uploaded yet.</p>
+      </section>
+    </aside>
+
+    <div class="backdrop" id="backdrop"></div>
+
+    <!-- ============ MAIN CHAT ============ -->
+    <main class="chat">
+      <header class="chat-header">
+        <button type="button" class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">&#9776;</button>
+        <div class="chat-title">
+          <h2>Ask your documents</h2>
+          <span id="chatSubtitle">Answers come only from the PDFs you upload</span>
+        </div>
+        <button type="button" class="ghost-btn" id="clearBtn">Clear chat</button>
+      </header>
+
+      <div class="messages" id="messages">
+        <!-- Empty state (hidden once the first message is added) -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-logo">D</div>
+          <h3>Upload a PDF, then ask a question</h3>
+          <p>For example: "What topics are included in Unit 3?"</p>
+        </div>
+      </div>
+
+      <div class="error-banner" id="errorBanner" hidden></div>
+
+      <form class="composer" id="chatForm">
+        <textarea id="questionInput" rows="1" placeholder="Ask something about your documents..."></textarea>
+        <button type="submit" class="send-btn" id="sendBtn">Send</button>
+      </form>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
